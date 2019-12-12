@@ -56,18 +56,19 @@
 							</div>
 						</div>
 						<div class="form-bottom">
-							<form role="form" action="" method="post" class="login-form">
+							<form role="form" id="loginForm" action="../../loginaction"
+								 method="post" class="login-form">
 								<div class="form-group">
 									<label class="sr-only" for="form-username"></label> <input
-										type="text" name="form-username" placeholder="用户名..." 
-										class="form-username form-control" id="form-username">
+										type="text" name="formusername" placeholder="用户名..."
+										class="form-username form-control" id="form-username" required>
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="form-password"></label> <input
-										type="password" name="form-password" placeholder="密码..."
-										class="form-password form-control" id="form-password">
+										type="password" name="formpassword" placeholder="密码..."
+										class="form-password form-control" id="form-password" required>
 								</div>
-								<button type="submit" class="btn" onclick="onLoginClick()">启程！</button>
+								<button type="submit" class="btn btn-primary">启程！</button>
 							</form>
 						</div>
 					</div>
@@ -90,49 +91,89 @@
 		</div>
 
 	</div>
-	<div class="copyrights">
-		Collect from <a href="http://www.cssmoban.com/" title="网站模板">网站模板</a>
-	</div>
 
 
 	<!-- Javascript -->
 	<script src="assets/js/jquery-1.11.1.min.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrapValidator.min.js"></script>
 	<script src="assets/js/jquery.backstretch.min.js"></script>
 	<script src="assets/js/scripts.js"></script>
-	<script src="assets/bootstrap/js/bootstrapValidator.min.js"></script>
 	<script>
-		function onLoginClick() {
-			validateForm();
-		}
-		function validateForm(){
-			window.alert("1");
-			$('form').bootstrapValidator({
-				message:'该值不合法',
-				feedbackIcons:{
-					valid:'glyphicon glyphicon-ok',
-					invalid:'glyphicon glyphicon-remove',
-					validating:'glyphicon glyphicon-refresh'
-				},
+	$(document).ready(function() {
+		$('#loginForm').bootstrapValidator({
+			message:'输入不合法',
+			feedbackIcons:{
+				valid:'glyphicon glyphicon-ok',
+				invalid:'glyphicon glyphicon-remove',
+				validating:'glyphicon glyphicon-refresh'
+			},
 			fields:{
-				form-username:{
-					message:'用户名验证失败',
-					validators:{
+				formusername:{
+					vaidators:{
 						notEmpty:{
 							message:'用户名不能为空'
 						}
 					}
 				},
-				form-password:{
-					validators:{
+				formpassword:{
+					vaidators:{
 						notEmpty:{
-							message:'密码不能为空'
+							message:'用户名不能为空'
 						}
 					}
 				}
 			}
-			});
-		}
+		}).on('submit',function(e){
+		});
+	})
+// 		//bootstrap验证
+// 		function validateForm(){
+// 			$('form').bootstrapValidator({
+// 				message:'该值不合法',
+// 				feedbackIcons:{
+// 					valid:'glyphicon glyphicon-ok',
+// 					invalid:'glyphicon glyphicon-remove',
+// 					validating:'glyphicon glyphicon-refresh'
+// 				},
+// 			fields:{
+// 				formusername:{
+// 					message:'用户名验证失败',
+// 					validators:{
+// 						notEmpty:{
+// 							message:'用户名不能为空'
+// 						}
+// 					}
+// 				},
+// 				formpassword:{
+// 					validators:{
+// 						notEmpty:{
+// 							message:'密码不能为空'
+// 						}
+// 					}
+// 				}
+// 			}
+// 			});
+// 		}
+// 		//提交用户名和密码
+// 		function login() {
+// 			validateForm();
+// // 			$("#form").submit(function(ev){ev.preventDefault();});
+// // 			$("#submit").on("click", function(){
+
+// // 			   var bootstrapValidator = $("#form").data('bootstrapValidator');
+// // 			   bootstrapValidator.validate();
+// // 			   if(bootstrapValidator.isValid()){
+// // 				   window.alert("验证通过");
+// // 			     $("#form").submit();
+// // 			   }
+// // 			   else{
+// // 				   window.alert("验证失败");
+// // 				   return;
+// // 			   }
+
+// // 			});
+// 		}
 	</script>
 </body>
 
